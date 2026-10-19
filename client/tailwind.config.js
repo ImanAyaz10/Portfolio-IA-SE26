@@ -10,7 +10,7 @@ export default {
       colors: {
         // Engineering journal palette
         canvas: {
-          dark: '#0c0d10',
+          dark: '#f2f2f2',
           darker: '#08080a',
           card: '#131418',
           cardBorder: '#22252d',

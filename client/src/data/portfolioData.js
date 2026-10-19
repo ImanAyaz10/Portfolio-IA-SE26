@@ -26,7 +26,7 @@ export const personalInfo = {
   socials: {
     github: "https://github.com/ImanAyaz10",
     linkedin: "https://www.linkedin.com/in/iman-ayaz-853b3a279/",
-    email: "imanayaz79@gmail.com",
+    email: "imanayaz2003@gmail.com",
     demoPortfolio: "https://imanayaz-portfolio.vercel.app/",
   },
 
