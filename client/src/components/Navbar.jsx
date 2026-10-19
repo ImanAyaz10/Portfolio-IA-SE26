@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useTheme } from '../context/ThemeContext';
 import { Sun, Moon, Briefcase, Menu, X, FileText, Terminal } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
+import { Github } from './BrandIcons';
 
 export default function Navbar({ onOpenRecruiterView }) {
   const { theme, toggleTheme } = useTheme();
@@ -18,6 +19,7 @@ export default function Navbar({ onOpenRecruiterView }) {
 
   const navLinks = [
     { name: 'Projects', href: '#projects' },
+    { name: 'GitHub Repos', href: '#github-feed' },
     { name: 'Decisions', href: '#decisions' },
     { name: 'Skills', href: '#skills' },
     { name: 'Experience', href: '#experience' },
@@ -79,6 +81,18 @@ export default function Navbar({ onOpenRecruiterView }) {
             <Briefcase className="w-3.5 h-3.5" />
             <span>Recruiter View</span>
           </button>
+
+          {/* GitHub Profile Button */}
+          <a
+            href={personalInfo.socials.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 rounded-md bg-canvas-card dark:bg-canvas-card light:bg-slate-100 border border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-300 text-slate-300 dark:text-slate-300 light:text-slate-700 hover:text-amber-500 dark:hover:text-amber-400 light:hover:text-amber-600 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500"
+            aria-label="GitHub Profile (@ImanAyaz10)"
+            title="Visit GitHub Profile (@ImanAyaz10)"
+          >
+            <Github className="w-4 h-4" />
+          </a>
 
           {/* Theme Toggle Button */}
           <button

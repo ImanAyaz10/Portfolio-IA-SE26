@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import BuildLog from './components/BuildLog';
+import GitHubShowcase from './components/GitHubShowcase';
 import DecisionJournal from './components/DecisionJournal';
 import SkillsMatrix from './components/SkillsMatrix';
 import Experience from './components/Experience';
@@ -45,6 +46,7 @@ export default function App() {
           onExploreProjects={scrollToProjects}
         />
         <BuildLog onSelectProject={setSelectedProject} />
+        <GitHubShowcase />
         <DecisionJournal />
         <SkillsMatrix onSelectProjectById={handleSelectProjectById} />
         <Experience onSelectProjectById={handleSelectProjectById} />

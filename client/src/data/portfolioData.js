@@ -46,6 +46,95 @@ export const personalInfo = {
   },
 };
 
+/**
+ * Central GitHub Integration Configuration
+ * Modify this configuration to manage all GitHub URLs, repository tracking,
+ * and live API display settings across your entire portfolio.
+ */
+export const gitHubConfig = {
+  username: "ImanAyaz10",
+  profileUrl: "https://github.com/ImanAyaz10",
+  repositoriesUrl: "https://github.com/ImanAyaz10?tab=repositories",
+  apiUrl: "https://api.github.com/users/ImanAyaz10",
+  verifiedRepoCount: 27,
+  enableLiveSync: true,
+  // Featured repositories showcased in the GitHub Activity stream
+  featuredRepos: [
+    {
+      name: "LAWBRIDGE-FYP",
+      url: "https://github.com/ImanAyaz10/LAWBRIDGE-FYP",
+      description: "AI-powered legal tech platform connecting citizens with verified lawyers in Pakistan. Built with MERN stack, Gemini AI & jsPDF.",
+      language: "JavaScript / React",
+      badge: "Signature Capstone",
+      hasDemo: true,
+      demoUrl: "https://lawbridge-fyp-xcg3.vercel.app/"
+    },
+    {
+      name: "Movie-Recommendation-System-elevvo-inernship-ML",
+      url: "https://github.com/ImanAyaz10/Movie-Recommendation-System-elevvo-inernship-ML",
+      description: "Collaborative filtering recommendation engine with User-Item sparse matrices, Cosine Similarity, and TruncatedSVD.",
+      language: "Python / Jupyter",
+      badge: "AI / ML",
+      hasDemo: false,
+      demoUrl: null
+    },
+    {
+      name: "Laon-approval-predictor-elevvo-pathways-inernship",
+      url: "https://github.com/ImanAyaz10/Laon-approval-predictor-elevvo-pathways-inernship",
+      description: "Credit risk classification pipeline using Random Forest ensemble model to predict applicant loan approval probabilities.",
+      language: "Python / scikit-learn",
+      badge: "Machine Learning",
+      hasDemo: false,
+      demoUrl: null
+    },
+    {
+      name: "Traffic-Sign-Recognition-elevvo-inernship-ML",
+      url: "https://github.com/ImanAyaz10/Traffic-Sign-Recognition-elevvo-inernship-ML",
+      description: "Real-time computer vision object detection model applying YOLOv8 and OpenCV for road asset recognition.",
+      language: "Python / YOLOv8",
+      badge: "Computer Vision",
+      hasDemo: false,
+      demoUrl: null
+    },
+    {
+      name: "CodeAlpha_TranslationTool",
+      url: "https://github.com/ImanAyaz10/CodeAlpha_TranslationTool",
+      description: "Interactive multilingual translation application powered by Gradio UI and Groq API with Llama models.",
+      language: "Python / Gradio",
+      badge: "AI API",
+      hasDemo: false,
+      demoUrl: null
+    },
+    {
+      name: "Weather-Dashboard-internship-elevvopathways",
+      url: "https://github.com/ImanAyaz10/Weather-Dashboard-internship-elevvopathways",
+      description: "Responsive meteorological dashboard with asynchronous weather API fetching, debounced search, and multi-day forecasts.",
+      language: "JavaScript / HTML5",
+      badge: "Frontend",
+      hasDemo: false,
+      demoUrl: null
+    },
+    {
+      name: "jobtrack-pro",
+      url: "https://github.com/ImanAyaz10/jobtrack-pro",
+      description: "Career management dashboard for tracking software engineering job applications and interview stages.",
+      language: "React.js",
+      badge: "Frontend App",
+      hasDemo: false,
+      demoUrl: null
+    },
+    {
+      name: "waste-classification-project-SA-AI",
+      url: "https://github.com/ImanAyaz10/waste-classification-project-SA-AI",
+      description: "Deep learning image classification system categorizing municipal waste into organic and recyclable materials.",
+      language: "Python / Deep Learning",
+      badge: "AI Application",
+      hasDemo: false,
+      demoUrl: null
+    }
+  ]
+};
+
 export const categories = [
   { id: "all", label: "All Projects" },
   { id: "fullstack", label: "Full Stack" },

@@ -84,9 +84,10 @@ export default function ProjectModal({ project, onClose }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-canvas-card dark:bg-canvas-card light:bg-white border border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-300 text-slate-200 dark:text-slate-200 light:text-slate-800 hover:border-amber-500 transition-colors"
+                title={`Inspect Source Code for ${project.title} on GitHub`}
               >
-                <Github className="w-3.5 h-3.5" />
-                <span>Verified Repository</span>
+                <Github className="w-3.5 h-3.5 text-amber-500" />
+                <span>View Source Code (GitHub)</span>
               </a>
             )}
 

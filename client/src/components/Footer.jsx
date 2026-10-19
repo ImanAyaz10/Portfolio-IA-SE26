@@ -25,16 +25,17 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Social links */}
-          <div className="flex items-center gap-4 text-slate-400">
+          {/* Social & GitHub links */}
+          <div className="flex flex-wrap items-center gap-3 text-slate-400">
             <a
               href={personalInfo.socials.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-amber-500 transition-colors"
-              aria-label="GitHub Profile"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-canvas-card dark:bg-canvas-card light:bg-slate-100 border border-canvas-cardBorder text-slate-300 dark:text-slate-300 light:text-slate-700 hover:text-amber-500 hover:border-amber-500 transition-colors"
+              aria-label="GitHub Profile (@ImanAyaz10)"
             >
-              <Github className="w-4 h-4" />
+              <Github className="w-4 h-4 text-amber-500" />
+              <span>GitHub (@ImanAyaz10 • 27 Repos)</span>
             </a>
 
             <a

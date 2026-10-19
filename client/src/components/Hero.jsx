@@ -104,6 +104,17 @@ export default function Hero({ onOpenResume, onExploreProjects }) {
               </button>
 
               <a
+                href={personalInfo.socials.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-canvas-card dark:bg-canvas-card light:bg-white hover:bg-canvas-cardBorder border border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-300 text-slate-200 dark:text-slate-200 light:text-slate-800 font-mono text-xs transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 shadow-sm"
+                aria-label="GitHub Profile (@ImanAyaz10)"
+              >
+                <Github className="w-4 h-4 text-amber-500" />
+                <span>GitHub (@ImanAyaz10)</span>
+              </a>
+
+              <a
                 href="#contact"
                 className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-canvas-card dark:bg-canvas-card light:bg-white hover:bg-canvas-cardBorder border border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-300 text-slate-200 dark:text-slate-200 light:text-slate-800 font-mono text-xs transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500"
               >
@@ -196,8 +207,16 @@ export default function Hero({ onOpenResume, onExploreProjects }) {
                     <span className="text-amber-500 dark:text-amber-400 light:text-amber-700 font-semibold">LawBridge (MERN+AI)</span>
                   </div>
                   <div className="flex items-center justify-between text-xs font-mono">
-                    <span className="text-slate-400 dark:text-slate-400 light:text-slate-500">Verified Repositories:</span>
-                    <span className="text-slate-200 dark:text-slate-200 light:text-slate-800 font-semibold">14+ Public Projects</span>
+                    <span className="text-slate-400 dark:text-slate-400 light:text-slate-500">GitHub Repositories:</span>
+                    <a
+                      href={personalInfo.socials.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-amber-500 hover:text-amber-400 font-semibold underline decoration-dotted"
+                      title="Inspect 27 public repositories on GitHub"
+                    >
+                      27 Public Repositories ↗
+                    </a>
                   </div>
                   <div className="flex items-center justify-between text-xs font-mono">
                     <span className="text-slate-400 dark:text-slate-400 light:text-slate-500">Internship Records:</span>

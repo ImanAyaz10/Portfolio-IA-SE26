@@ -231,11 +231,11 @@ export default function BuildLog({ onSelectProject }) {
                 </div>
 
                 {/* Card Footer: Action Links */}
-                <div className="px-6 py-4 border-t border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-100 flex items-center justify-between gap-3 bg-canvas-dark/30 dark:bg-canvas-dark/30 light:bg-slate-50/50 rounded-b-xl">
+                <div className="px-6 py-4 border-t border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-100 flex flex-wrap items-center justify-between gap-3 bg-canvas-dark/30 dark:bg-canvas-dark/30 light:bg-slate-50/50 rounded-b-xl text-xs font-mono">
                   {/* Case Study Deep Dive Modal Trigger */}
                   <button
                     onClick={() => onSelectProject(project)}
-                    className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-amber-500 hover:text-amber-400 transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-amber-500"
+                    className="inline-flex items-center gap-1.5 text-amber-500 hover:text-amber-400 font-semibold transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-amber-500"
                   >
                     <BookOpen className="w-3.5 h-3.5" />
                     <span>Case Study Log</span>
@@ -243,28 +243,32 @@ export default function BuildLog({ onSelectProject }) {
 
                   {/* External links */}
                   <div className="flex items-center gap-3">
+                    {/* View Source Code Link to verified GitHub repository */}
                     {project.github && (
                       <a
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-slate-400 hover:text-slate-100 dark:hover:text-slate-100 light:hover:text-slate-900 transition-colors"
-                        title="View GitHub Repository"
-                        aria-label={`View GitHub repository for ${project.title}`}
+                        className="inline-flex items-center gap-1.5 text-slate-300 dark:text-slate-300 light:text-slate-700 hover:text-amber-500 transition-colors"
+                        title={`View Source Code for ${project.title} on GitHub`}
+                        aria-label={`View Source Code for ${project.title} on GitHub`}
                       >
-                        <Github className="w-4 h-4" />
+                        <Github className="w-3.5 h-3.5 text-amber-500" />
+                        <span>View Source Code</span>
                       </a>
                     )}
+
+                    {/* Live Demo Link only when verified deployment exists */}
                     {project.demo && (
                       <a
                         href={project.demo}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-amber-500 hover:text-amber-400 transition-colors inline-flex items-center gap-1 text-xs font-mono font-medium"
-                        title="Open Verified Live Demo"
+                        className="text-emerald-500 hover:text-emerald-400 transition-colors inline-flex items-center gap-1 font-semibold"
+                        title={`Open Live Demo for ${project.title}`}
                         aria-label={`Open Live Demo for ${project.title}`}
                       >
-                        <span>Demo</span>
+                        <span>Live Demo</span>
                         <ArrowUpRight className="w-3.5 h-3.5" />
                       </a>
                     )}
