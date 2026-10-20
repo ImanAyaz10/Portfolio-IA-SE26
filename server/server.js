@@ -86,6 +86,12 @@ async function startServer() {
   });
 }
 
-startServer();
+// Only start the server when running directly (not when imported by Vercel serverless)
+if (!process.env.VERCEL) {
+  startServer();
+} else {
+  // On Vercel, just connect DB without starting listener
+  connectDB();
+}
 
 export default app;
