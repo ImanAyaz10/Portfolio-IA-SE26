@@ -8,6 +8,7 @@ import SkillsMatrix from './components/SkillsMatrix';
 import Experience from './components/Experience';
 import Constellation from './components/Constellation';
 import Education from './components/Education';
+import Certifications from './components/Certifications';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ProjectModal from './components/ProjectModal';
@@ -52,6 +53,7 @@ export default function App() {
         <Experience onSelectProjectById={handleSelectProjectById} />
         <Constellation />
         <Education />
+        <Certifications />
         <Contact />
       </main>
 

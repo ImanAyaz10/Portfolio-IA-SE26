@@ -50,7 +50,7 @@ export default function RecruiterView({ isOpen, onClose, onSelectProjectById, on
                 90-Second Recruiter Summary
               </span>
               <span className="text-slate-500">•</span>
-              <span className="text-[10px] font-mono text-amber-500 font-semibold">
+              <span className="text-[10px] font-mono text-amber-500 dark:text-amber-400 light:text-amber-700 font-semibold">
                 Available Immediately
               </span>
             </div>
@@ -65,7 +65,7 @@ export default function RecruiterView({ isOpen, onClose, onSelectProjectById, on
 
           <button
             onClick={onClose}
-            className="p-2 rounded-lg bg-canvas-dark dark:bg-canvas-dark light:bg-slate-100 border border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-300 text-slate-400 hover:text-slate-100 dark:hover:text-slate-100 light:hover:text-slate-900 transition-colors"
+            className="p-2 rounded-lg bg-canvas-dark dark:bg-canvas-dark light:bg-slate-100 border border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-300 text-slate-400 dark:text-slate-400 light:text-slate-700 hover:text-slate-100 dark:hover:text-slate-100 light:hover:text-slate-900 transition-colors"
             aria-label="Close Recruiter View"
           >
             <X className="w-5 h-5" />
@@ -79,7 +79,7 @@ export default function RecruiterView({ isOpen, onClose, onSelectProjectById, on
           <div className="grid md:grid-cols-12 gap-4 items-stretch">
             
             <div className="md:col-span-8 p-4 rounded-xl bg-canvas-dark dark:bg-canvas-dark light:bg-slate-50 border border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-200">
-              <span className="text-[10px] font-mono text-slate-500 uppercase tracking-wider block mb-1 font-bold">
+              <span className="text-[10px] font-mono text-slate-400 dark:text-slate-400 light:text-slate-600 uppercase tracking-wider block mb-1 font-bold">
                 Elevator Pitch
               </span>
               <p className="text-xs text-slate-300 dark:text-slate-300 light:text-slate-700 leading-relaxed">
@@ -87,33 +87,29 @@ export default function RecruiterView({ isOpen, onClose, onSelectProjectById, on
               </p>
             </div>
 
-            <div className="md:col-span-4 p-4 rounded-xl bg-amber-500/10 border border-amber-500/30 flex flex-col justify-between">
+            <div className="md:col-span-4 p-4 rounded-xl bg-amber-500/10 dark:bg-amber-500/10 light:bg-amber-50 border border-amber-500/30 flex flex-col justify-between">
               <div>
-                <span className="text-[10px] font-mono text-amber-500 font-bold uppercase tracking-wider block mb-1">
+                <span className="text-[10px] font-mono text-amber-500 dark:text-amber-400 light:text-amber-800 font-bold uppercase tracking-wider block mb-1.5">
                   Target Roles
                 </span>
-                <ul className="space-y-1 text-xs font-mono text-slate-200 dark:text-slate-200 light:text-slate-800">
+                <ul className="space-y-1.5 text-xs font-mono text-slate-200 dark:text-slate-200 light:text-slate-800">
                   <li className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
                     <span>Frontend Developer (React)</span>
                   </li>
                   <li className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
                     <span>Software QA / Testing (SQA)</span>
                   </li>
                   <li className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
                     <span>Full-Stack Junior (MERN)</span>
-                  </li>
-                  <li className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
-                    <span>Associate Project Manager</span>
                   </li>
                 </ul>
               </div>
 
-              <div className="mt-3 pt-2 border-t border-amber-500/20 text-[10px] font-mono text-slate-400">
-                Notice: Immediate joiner
+              <div className="mt-3 pt-2 border-t border-amber-500/20 text-[10px] font-mono text-slate-400 dark:text-slate-400 light:text-slate-600">
+                Notice: Immediate joiner (2026)
               </div>
             </div>
 
@@ -122,10 +118,10 @@ export default function RecruiterView({ isOpen, onClose, onSelectProjectById, on
           {/* Top 3 Verified Signature Projects */}
           <div>
             <div className="flex items-center justify-between mb-2">
-              <span className="text-[11px] font-mono text-amber-500 font-bold uppercase tracking-wider">
+              <span className="text-[11px] font-mono text-amber-500 dark:text-amber-400 light:text-amber-800 font-bold uppercase tracking-wider">
                 Top Verified Technical Projects
               </span>
-              <span className="text-[10px] font-mono text-slate-500">
+              <span className="text-[10px] font-mono text-slate-500 dark:text-slate-500 light:text-slate-600">
                 With working demos & repositories
               </span>
             </div>
@@ -137,24 +133,24 @@ export default function RecruiterView({ isOpen, onClose, onSelectProjectById, on
                   className="p-3.5 rounded-xl bg-canvas-dark dark:bg-canvas-dark light:bg-slate-50 border border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-200 flex flex-col justify-between"
                 >
                   <div>
-                    <span className="text-[9px] font-mono text-amber-500 uppercase block mb-0.5">
+                    <span className="text-[9px] font-mono text-amber-500 dark:text-amber-400 light:text-amber-700 font-semibold uppercase block mb-0.5">
                       {p.category} • {p.status}
                     </span>
                     <h4 className="text-xs font-bold text-slate-200 dark:text-slate-200 light:text-slate-900 leading-snug">
                       {p.title}
                     </h4>
-                    <p className="text-[11px] text-slate-400 mt-1 line-clamp-2 leading-relaxed">
+                    <p className="text-[11px] text-slate-400 dark:text-slate-400 light:text-slate-600 mt-1 line-clamp-2 leading-relaxed">
                       {p.problem}
                     </p>
                   </div>
 
-                  <div className="mt-3 pt-2 border-t border-canvas-cardBorder/60 flex items-center justify-between text-xs font-mono">
+                  <div className="mt-3 pt-2 border-t border-canvas-cardBorder/60 dark:border-canvas-cardBorder/60 light:border-slate-200 flex items-center justify-between text-xs font-mono">
                     <button
                       onClick={() => {
                         onClose();
                         onSelectProjectById(p.id);
                       }}
-                      className="text-amber-500 hover:text-amber-400 font-semibold inline-flex items-center gap-1 text-[11px]"
+                      className="text-amber-500 dark:text-amber-400 light:text-amber-700 hover:text-amber-400 font-semibold inline-flex items-center gap-1 text-[11px]"
                     >
                       <span>Case Study</span>
                       <ArrowRight className="w-3 h-3" />
@@ -165,9 +161,9 @@ export default function RecruiterView({ isOpen, onClose, onSelectProjectById, on
                         href={p.demo}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-emerald-500 hover:text-emerald-400 inline-flex items-center gap-0.5 text-[10px]"
+                        className="text-emerald-500 dark:text-emerald-500 light:text-emerald-700 hover:text-emerald-400 inline-flex items-center gap-0.5 text-[10px] font-bold"
                       >
-                        <span>Live</span>
+                        <span>Live Demo</span>
                         <ExternalLink className="w-3 h-3" />
                       </a>
                     )}
@@ -179,7 +175,7 @@ export default function RecruiterView({ isOpen, onClose, onSelectProjectById, on
 
           {/* Practical Work History (3 Verified Roles) */}
           <div>
-            <span className="text-[11px] font-mono text-amber-500 font-bold uppercase tracking-wider block mb-2">
+            <span className="text-[11px] font-mono text-amber-500 dark:text-amber-400 light:text-amber-800 font-bold uppercase tracking-wider block mb-2">
               Verified Practical Experience
             </span>
 
@@ -193,15 +189,15 @@ export default function RecruiterView({ isOpen, onClose, onSelectProjectById, on
                     <span className="font-bold text-slate-200 dark:text-slate-200 light:text-slate-900">
                       {exp.role}
                     </span>
-                    <span className="text-amber-500 font-semibold"> @ {exp.organization}</span>
-                    <p className="text-[11px] text-slate-400 mt-0.5">
+                    <span className="text-amber-500 dark:text-amber-400 light:text-amber-700 font-semibold"> @ {exp.organization}</span>
+                    <p className="text-[11px] text-slate-400 dark:text-slate-400 light:text-slate-600 mt-0.5">
                       {exp.description}
                     </p>
                   </div>
 
-                  <div className="text-[11px] text-slate-500 sm:text-right shrink-0">
+                  <div className="text-[11px] text-slate-500 dark:text-slate-500 light:text-slate-600 sm:text-right shrink-0">
                     <div>{exp.period}</div>
-                    <div className="text-emerald-500">{exp.status}</div>
+                    <div className="text-emerald-500 font-semibold">{exp.status}</div>
                   </div>
                 </div>
               ))}
@@ -209,15 +205,15 @@ export default function RecruiterView({ isOpen, onClose, onSelectProjectById, on
           </div>
 
           {/* Quick Contact & Action Buttons */}
-          <div className="p-4 rounded-xl bg-canvas-dark dark:bg-canvas-dark light:bg-slate-100 border border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-200 flex flex-wrap items-center justify-between gap-4 font-mono text-xs">
+          <div className="p-4 rounded-xl bg-canvas-dark dark:bg-canvas-dark light:bg-slate-100 border border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-300 flex flex-wrap items-center justify-between gap-4 font-mono text-xs">
             <div className="flex items-center gap-2">
               <Mail className="w-4 h-4 text-amber-500" />
-              <span className="text-slate-300 dark:text-slate-300 light:text-slate-700">
+              <span className="text-slate-300 dark:text-slate-300 light:text-slate-800 font-semibold">
                 {personalInfo.socials.email}
               </span>
               <button
                 onClick={copyEmail}
-                className="p-1 rounded bg-canvas-card hover:bg-canvas-cardBorder border border-canvas-cardBorder text-slate-400 hover:text-slate-200"
+                className="p-1.5 rounded bg-canvas-card dark:bg-canvas-card light:bg-white hover:bg-canvas-cardBorder dark:hover:bg-canvas-cardBorder light:hover:bg-slate-200 border border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-300 text-slate-400 dark:text-slate-400 light:text-slate-700 transition-colors"
                 title="Copy Email Address"
                 aria-label="Copy Email Address"
               >
@@ -231,7 +227,7 @@ export default function RecruiterView({ isOpen, onClose, onSelectProjectById, on
                   onClose();
                   onOpenResume();
                 }}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500 text-slate-950 font-bold hover:bg-amber-400 transition-colors"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500 text-slate-950 font-bold hover:bg-amber-400 transition-colors shadow-sm"
               >
                 <FileText className="w-3.5 h-3.5" />
                 <span>View & Download Resume</span>
@@ -241,7 +237,7 @@ export default function RecruiterView({ isOpen, onClose, onSelectProjectById, on
                 href={personalInfo.socials.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-canvas-card border border-canvas-cardBorder text-slate-200 hover:border-amber-500 transition-colors"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-canvas-card dark:bg-canvas-card light:bg-white border border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-300 text-slate-200 dark:text-slate-200 light:text-slate-800 hover:border-amber-500 hover:text-amber-500 transition-colors"
               >
                 <Linkedin className="w-3.5 h-3.5 text-amber-500" />
                 <span>LinkedIn</span>
@@ -251,7 +247,7 @@ export default function RecruiterView({ isOpen, onClose, onSelectProjectById, on
                 href={personalInfo.socials.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-canvas-card border border-canvas-cardBorder text-slate-200 hover:border-amber-500 transition-colors"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-canvas-card dark:bg-canvas-card light:bg-white border border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-300 text-slate-200 dark:text-slate-200 light:text-slate-800 hover:border-amber-500 hover:text-amber-500 transition-colors"
               >
                 <Github className="w-3.5 h-3.5" />
                 <span>GitHub</span>
@@ -266,7 +262,7 @@ export default function RecruiterView({ isOpen, onClose, onSelectProjectById, on
           <span>STATUS: CANDIDATE_INTERVIEW_READY</span>
           <button
             onClick={onClose}
-            className="px-4 py-1.5 rounded-lg bg-canvas-card dark:bg-canvas-card light:bg-slate-200 border border-canvas-cardBorder text-slate-300 dark:text-slate-300 light:text-slate-800 hover:text-white transition-colors"
+            className="px-4 py-1.5 rounded-lg bg-canvas-card dark:bg-canvas-card light:bg-slate-200 border border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-300 text-slate-300 dark:text-slate-300 light:text-slate-800 hover:text-white transition-colors"
           >
             Close Summary [ESC]
           </button>

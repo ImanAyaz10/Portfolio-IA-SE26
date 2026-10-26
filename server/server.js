@@ -86,10 +86,10 @@ async function startServer() {
   });
 }
 
-// Only start the server when running directly (not when imported by Vercel serverless)
-if (!process.env.VERCEL) {
+// Only start the server when running directly (not when imported by tests or Vercel serverless)
+if (!process.env.VERCEL && process.env.NODE_ENV !== 'test') {
   startServer();
-} else {
+} else if (process.env.VERCEL) {
   // On Vercel, just connect DB without starting listener
   connectDB();
 }

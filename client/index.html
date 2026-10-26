@@ -1,10 +1,28 @@
 <!DOCTYPE html>
-<html lang="en" class="dark scroll-smooth">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0c0d10" />
     
+    <!-- Inline anti-flash theme script -->
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('iman_buildlog_theme');
+          var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+          var theme = saved ? saved : (prefersLight ? 'light' : 'dark');
+          if (theme === 'light') {
+            document.documentElement.classList.add('light');
+            document.documentElement.classList.remove('dark');
+          } else {
+            document.documentElement.classList.add('dark');
+            document.documentElement.classList.remove('light');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
     <!-- Primary Meta Tags -->
     <title>IMAN // BUILD LOG — Software Engineer | Frontend & Full-Stack</title>
     <meta name="title" content="IMAN // BUILD LOG — Software Engineer | Frontend & Full-Stack" />
@@ -14,7 +32,7 @@
 
     <!-- Open Graph / Facebook / LinkedIn -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://iman-build-log.vercel.app/" />
+    <meta property="og:url" content="https://portfolio-ia-se26.vercel.app/" />
     <meta property="og:title" content="IMAN // BUILD LOG — Engineering Portfolio & Project Case Studies" />
     <meta property="og:description" content="Explore what I build, how I think, and what I am learning. Interactive case studies across React, Node.js, AI APIs, and SQA." />
     <meta property="og:image" content="/og-preview.png" />
@@ -32,7 +50,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
   </head>
-  <body class="bg-canvas-dark text-slate-200 antialiased selection:bg-amber-accent/20 selection:text-amber-accent transition-colors duration-200">
+  <body class="bg-canvas-dark text-slate-200 light:bg-slate-50 light:text-slate-900 antialiased selection:bg-amber-500/20 selection:text-amber-500 transition-colors duration-200">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

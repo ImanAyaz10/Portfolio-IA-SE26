@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useTheme } from '../context/ThemeContext';
-import { Sun, Moon, Briefcase, Menu, X, FileText, Terminal } from 'lucide-react';
+import { Sun, Moon, Briefcase, Menu, X, Mail } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
-import { Github } from './BrandIcons';
+import { Github, Linkedin } from './BrandIcons';
 
 export default function Navbar({ onOpenRecruiterView }) {
   const { theme, toggleTheme } = useTheme();
@@ -25,14 +25,17 @@ export default function Navbar({ onOpenRecruiterView }) {
     { name: 'Experience', href: '#experience' },
     { name: 'Constellation', href: '#constellation' },
     { name: 'Education', href: '#education' },
+    { name: 'Certifications', href: '#certifications' },
     { name: 'Contact', href: '#contact' },
   ];
+
+  const themeActionLabel = theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         isScrolled
-          ? 'bg-canvas-dark/90 dark:bg-canvas-dark/90 light:bg-white/90 backdrop-blur-md border-b border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-200 shadow-sm py-3'
+          ? 'bg-canvas-dark/95 dark:bg-canvas-dark/95 light:bg-white/95 backdrop-blur-md border-b border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-200 shadow-sm py-3'
           : 'bg-transparent py-5'
       }`}
     >
@@ -43,35 +46,35 @@ export default function Navbar({ onOpenRecruiterView }) {
           className="flex items-center gap-2 group focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 rounded px-1"
           aria-label="IMAN // BUILD LOG Homepage"
         >
-          <div className="w-8 h-8 rounded bg-canvas-card border border-canvas-cardBorder flex items-center justify-center text-amber-500 font-mono text-sm font-bold group-hover:border-amber-500/50 transition-colors shadow-sm">
+          <div className="w-8 h-8 rounded bg-canvas-card dark:bg-canvas-card light:bg-slate-100 border border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-300 flex items-center justify-center text-amber-500 font-mono text-sm font-bold group-hover:border-amber-500/50 transition-colors shadow-sm">
             IA
           </div>
           <div className="flex flex-col">
             <span className="font-mono font-bold tracking-tight text-sm sm:text-base text-slate-100 dark:text-slate-100 light:text-slate-900 flex items-center gap-2">
               IMAN <span className="text-amber-500">//</span> BUILD LOG
             </span>
-            <span className="font-mono text-[10px] text-emerald-500 dark:text-emerald-400 flex items-center gap-1.5">
+            <span className="font-mono text-[10px] text-emerald-500 dark:text-emerald-500 flex items-center gap-1.5 font-medium">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
               SYS::OPEN_TO_WORK
             </span>
           </div>
         </a>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-6" aria-label="Main Navigation">
+        {/* Desktop Navigation Links */}
+        <nav className="hidden xl:flex items-center gap-5" aria-label="Main Navigation">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="text-xs font-mono tracking-wider text-slate-400 dark:text-slate-400 light:text-slate-600 hover:text-amber-500 dark:hover:text-amber-400 light:hover:text-amber-600 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 rounded px-1 py-0.5"
+              className="text-xs font-mono tracking-wider text-slate-400 dark:text-slate-400 light:text-slate-700 hover:text-amber-500 dark:hover:text-amber-400 light:hover:text-amber-600 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 rounded px-1 py-0.5"
             >
               {link.name}
             </a>
           ))}
         </nav>
 
-        {/* Action Controls */}
-        <div className="hidden sm:flex items-center gap-3">
+        {/* Action Controls & Social Icons */}
+        <div className="hidden sm:flex items-center gap-2.5">
           {/* Recruiter Quick View Button */}
           <button
             onClick={onOpenRecruiterView}
@@ -82,41 +85,70 @@ export default function Navbar({ onOpenRecruiterView }) {
             <span>Recruiter View</span>
           </button>
 
+          {/* Social Links Divider */}
+          <div className="h-5 w-[1px] bg-canvas-cardBorder dark:bg-canvas-cardBorder light:bg-slate-300 mx-1" />
+
           {/* GitHub Profile Button */}
           <a
             href={personalInfo.socials.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2 rounded-md bg-canvas-card dark:bg-canvas-card light:bg-slate-100 border border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-300 text-slate-300 dark:text-slate-300 light:text-slate-700 hover:text-amber-500 dark:hover:text-amber-400 light:hover:text-amber-600 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500"
+            className="p-2 rounded-md bg-canvas-card dark:bg-canvas-card light:bg-slate-100 border border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-300 text-slate-300 dark:text-slate-300 light:text-slate-700 hover:text-amber-500 dark:hover:text-amber-400 light:hover:text-amber-600 hover:border-amber-500/50 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500"
             aria-label="GitHub Profile (@ImanAyaz10)"
             title="Visit GitHub Profile (@ImanAyaz10)"
           >
             <Github className="w-4 h-4" />
           </a>
 
+          {/* LinkedIn Profile Button */}
+          <a
+            href={personalInfo.socials.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 rounded-md bg-canvas-card dark:bg-canvas-card light:bg-slate-100 border border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-300 text-slate-300 dark:text-slate-300 light:text-slate-700 hover:text-amber-500 dark:hover:text-amber-400 light:hover:text-amber-600 hover:border-amber-500/50 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500"
+            aria-label="LinkedIn Profile (Iman Ayaz)"
+            title="Visit LinkedIn Profile"
+          >
+            <Linkedin className="w-4 h-4" />
+          </a>
+
+          {/* Direct Email Button */}
+          <a
+            href={`mailto:${personalInfo.socials.email}`}
+            className="p-2 rounded-md bg-canvas-card dark:bg-canvas-card light:bg-slate-100 border border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-300 text-slate-300 dark:text-slate-300 light:text-slate-700 hover:text-amber-500 dark:hover:text-amber-400 light:hover:text-amber-600 hover:border-amber-500/50 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500"
+            aria-label="Send Email to Iman Ayaz (imanayaz2003@gmail.com)"
+            title="Email Iman Ayaz (imanayaz2003@gmail.com)"
+          >
+            <Mail className="w-4 h-4" />
+          </a>
+
           {/* Theme Toggle Button */}
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-md bg-canvas-card dark:bg-canvas-card light:bg-slate-100 border border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-300 text-slate-300 dark:text-slate-300 light:text-slate-700 hover:text-amber-500 dark:hover:text-amber-400 light:hover:text-amber-600 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500"
-            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+            className="p-2 rounded-md bg-canvas-card dark:bg-canvas-card light:bg-slate-100 border border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-300 text-slate-300 dark:text-slate-300 light:text-slate-700 hover:text-amber-500 dark:hover:text-amber-400 light:hover:text-amber-600 hover:border-amber-500/50 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500"
+            aria-label={themeActionLabel}
+            title={themeActionLabel}
           >
-            {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+            {theme === 'dark' ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-slate-700" />}
           </button>
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Controls */}
         <div className="flex sm:hidden items-center gap-2">
+          {/* Mobile Theme Toggle */}
           <button
             onClick={toggleTheme}
-            className="p-1.5 rounded-md bg-canvas-card dark:bg-canvas-card light:bg-slate-100 border border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-300 text-slate-300 dark:text-slate-300 light:text-slate-700"
-            aria-label="Toggle theme"
+            className="p-2 rounded-md bg-canvas-card dark:bg-canvas-card light:bg-slate-100 border border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-300 text-slate-300 dark:text-slate-300 light:text-slate-700"
+            aria-label={themeActionLabel}
+            title={themeActionLabel}
           >
-            {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+            {theme === 'dark' ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-slate-700" />}
           </button>
 
+          {/* Hamburger Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-1.5 rounded-md bg-canvas-card dark:bg-canvas-card light:bg-slate-100 border border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-300 text-slate-300 dark:text-slate-300 light:text-slate-700"
+            className="p-2 rounded-md bg-canvas-card dark:bg-canvas-card light:bg-slate-100 border border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-300 text-slate-300 dark:text-slate-300 light:text-slate-700"
             aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -126,18 +158,52 @@ export default function Navbar({ onOpenRecruiterView }) {
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="sm:hidden bg-canvas-card dark:bg-canvas-card light:bg-white border-b border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-200 px-4 pt-3 pb-5 space-y-3 shadow-lg">
+        <div className="sm:hidden bg-canvas-card dark:bg-canvas-card light:bg-white border-b border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-200 px-4 pt-3 pb-5 space-y-4 shadow-xl">
           <div className="grid grid-cols-2 gap-2">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-xs font-mono p-2 rounded bg-canvas-dark dark:bg-canvas-dark light:bg-slate-50 text-slate-300 dark:text-slate-300 light:text-slate-700 hover:text-amber-500"
+                className="text-xs font-mono p-2.5 rounded bg-canvas-dark dark:bg-canvas-dark light:bg-slate-50 text-slate-300 dark:text-slate-300 light:text-slate-800 hover:text-amber-500 border border-canvas-cardBorder/50 dark:border-canvas-cardBorder/50 light:border-slate-200"
               >
                 {link.name}
               </a>
             ))}
+          </div>
+
+          {/* Mobile Social Row */}
+          <div className="flex items-center justify-around pt-2 border-t border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-200">
+            <a
+              href={personalInfo.socials.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 text-xs font-mono text-slate-400 dark:text-slate-400 light:text-slate-700 hover:text-amber-500"
+              aria-label="GitHub Profile (@ImanAyaz10)"
+            >
+              <Github className="w-4 h-4 text-amber-500" />
+              <span>GitHub</span>
+            </a>
+
+            <a
+              href={personalInfo.socials.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 text-xs font-mono text-slate-400 dark:text-slate-400 light:text-slate-700 hover:text-amber-500"
+              aria-label="LinkedIn Profile"
+            >
+              <Linkedin className="w-4 h-4 text-amber-500" />
+              <span>LinkedIn</span>
+            </a>
+
+            <a
+              href={`mailto:${personalInfo.socials.email}`}
+              className="flex items-center gap-1.5 text-xs font-mono text-slate-400 dark:text-slate-400 light:text-slate-700 hover:text-amber-500"
+              aria-label="Email Iman Ayaz"
+            >
+              <Mail className="w-4 h-4 text-amber-500" />
+              <span>Email</span>
+            </a>
           </div>
 
           <button

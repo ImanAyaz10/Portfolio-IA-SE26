@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { personalInfo, education, experience, skillsData } from '../data/portfolioData';
-import { X, Download, FileText, CheckCircle2, GraduationCap, Briefcase, Mail, Phone, MapPin, ExternalLink } from 'lucide-react';
+import { X, Download, FileText, GraduationCap, Briefcase } from 'lucide-react';
 
 export default function ResumeModal({ isOpen, onClose }) {
   useEffect(() => {
@@ -46,7 +46,7 @@ export default function ResumeModal({ isOpen, onClose }) {
 
             <button
               onClick={onClose}
-              className="p-1.5 rounded-lg bg-canvas-dark dark:bg-canvas-dark light:bg-slate-100 border border-canvas-cardBorder text-slate-400 hover:text-slate-100"
+              className="p-1.5 rounded-lg bg-canvas-dark dark:bg-canvas-dark light:bg-slate-100 border border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-300 text-slate-400 dark:text-slate-400 light:text-slate-700 hover:text-slate-100 dark:hover:text-slate-100 light:hover:text-slate-900 transition-colors"
               aria-label="Close Resume Preview"
             >
               <X className="w-5 h-5" />
@@ -59,17 +59,17 @@ export default function ResumeModal({ isOpen, onClose }) {
           
           {/* Header Card */}
           <div className="p-6 rounded-xl bg-canvas-card dark:bg-canvas-card light:bg-white border border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-200 space-y-3">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-canvas-cardBorder/60 pb-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-canvas-cardBorder/60 dark:border-canvas-cardBorder/60 light:border-slate-200 pb-4">
               <div>
                 <h1 className="text-2xl font-black text-slate-100 dark:text-slate-100 light:text-slate-900">
                   {personalInfo.name}
                 </h1>
-                <p className="text-xs font-mono text-amber-500 font-semibold mt-0.5">
+                <p className="text-xs font-mono text-amber-500 dark:text-amber-400 light:text-amber-700 font-semibold mt-0.5">
                   {personalInfo.headline}
                 </p>
               </div>
 
-              <div className="text-xs font-mono text-slate-400 sm:text-right space-y-1">
+              <div className="text-xs font-mono text-slate-400 dark:text-slate-400 light:text-slate-600 sm:text-right space-y-1">
                 <div>{personalInfo.location}</div>
                 <div>{personalInfo.socials.email}</div>
               </div>
@@ -82,7 +82,7 @@ export default function ResumeModal({ isOpen, onClose }) {
 
           {/* Education */}
           <div className="p-6 rounded-xl bg-canvas-card dark:bg-canvas-card light:bg-white border border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-200 space-y-3">
-            <h3 className="text-xs font-mono font-bold text-amber-500 uppercase tracking-wider flex items-center gap-1.5">
+            <h3 className="text-xs font-mono font-bold text-amber-500 dark:text-amber-400 light:text-amber-700 uppercase tracking-wider flex items-center gap-1.5">
               <GraduationCap className="w-4 h-4" />
               <span>Education</span>
             </h3>
@@ -92,24 +92,24 @@ export default function ResumeModal({ isOpen, onClose }) {
                 <span className="font-bold text-slate-100 dark:text-slate-100 light:text-slate-900 block">
                   {education.degree}
                 </span>
-                <span className="text-slate-400">{education.institution} — {education.location}</span>
+                <span className="text-slate-400 dark:text-slate-400 light:text-slate-600">{education.institution} — {education.location}</span>
               </div>
-              <span className="text-amber-500">{education.period}</span>
+              <span className="text-amber-500 dark:text-amber-400 light:text-amber-700 font-semibold">{education.period}</span>
             </div>
 
-            <div className="text-xs text-slate-400 pt-1">
+            <div className="text-xs text-slate-400 dark:text-slate-400 light:text-slate-600 pt-1">
               <strong>Capstone (FYP):</strong> {education.capstone.title} ({education.capstone.scope})
             </div>
           </div>
 
           {/* Practical Work History */}
           <div className="p-6 rounded-xl bg-canvas-card dark:bg-canvas-card light:bg-white border border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-200 space-y-4">
-            <h3 className="text-xs font-mono font-bold text-amber-500 uppercase tracking-wider flex items-center gap-1.5">
+            <h3 className="text-xs font-mono font-bold text-amber-500 dark:text-amber-400 light:text-amber-700 uppercase tracking-wider flex items-center gap-1.5">
               <Briefcase className="w-4 h-4" />
               <span>Internship & Practical Experience</span>
             </h3>
 
-            <div className="space-y-4 divide-y divide-canvas-cardBorder/60">
+            <div className="space-y-4 divide-y divide-canvas-cardBorder/60 dark:divide-canvas-cardBorder/60 light:divide-slate-200">
               {experience.map((exp, idx) => (
                 <div key={exp.id} className={idx > 0 ? 'pt-4' : ''}>
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 text-xs font-mono mb-1">
@@ -117,9 +117,9 @@ export default function ResumeModal({ isOpen, onClose }) {
                       <span className="font-bold text-slate-100 dark:text-slate-100 light:text-slate-900">
                         {exp.role}
                       </span>
-                      <span className="text-amber-500 font-semibold"> — {exp.organization}</span>
+                      <span className="text-amber-500 dark:text-amber-400 light:text-amber-700 font-semibold"> — {exp.organization}</span>
                     </div>
-                    <span className="text-slate-400">{exp.period}</span>
+                    <span className="text-slate-400 dark:text-slate-400 light:text-slate-600">{exp.period}</span>
                   </div>
 
                   <ul className="space-y-1 mt-2 text-xs text-slate-300 dark:text-slate-300 light:text-slate-700">
@@ -137,21 +137,21 @@ export default function ResumeModal({ isOpen, onClose }) {
 
           {/* Technical Skills Summary */}
           <div className="p-6 rounded-xl bg-canvas-card dark:bg-canvas-card light:bg-white border border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-200 space-y-3">
-            <h3 className="text-xs font-mono font-bold text-amber-500 uppercase tracking-wider">
+            <h3 className="text-xs font-mono font-bold text-amber-500 dark:text-amber-400 light:text-amber-700 uppercase tracking-wider">
               Technical Proficiencies
             </h3>
 
             <div className="grid sm:grid-cols-2 gap-3 text-xs font-mono">
               {skillsData.map((cat) => (
                 <div key={cat.category}>
-                  <span className="text-slate-400 font-semibold block mb-1">
+                  <span className="text-slate-400 dark:text-slate-400 light:text-slate-600 font-semibold block mb-1">
                     {cat.category}:
                   </span>
                   <div className="flex flex-wrap gap-1">
                     {cat.skills.map((s) => (
                       <span
                         key={s.name}
-                        className="px-2 py-0.5 rounded bg-canvas-dark dark:bg-canvas-dark light:bg-slate-100 text-slate-300 dark:text-slate-300 light:text-slate-700 text-[11px]"
+                        className="px-2 py-0.5 rounded bg-canvas-dark dark:bg-canvas-dark light:bg-slate-100 border border-canvas-cardBorder/50 dark:border-canvas-cardBorder/50 light:border-slate-200 text-slate-300 dark:text-slate-300 light:text-slate-800 text-[11px]"
                       >
                         {s.name}
                       </span>
@@ -163,8 +163,8 @@ export default function ResumeModal({ isOpen, onClose }) {
           </div>
 
           {/* Replace Resume Note */}
-          <div className="p-3 rounded-lg bg-canvas-card dark:bg-canvas-card light:bg-slate-100 border border-canvas-cardBorder text-[10px] font-mono text-slate-500 text-center">
-            To replace the downloadable PDF, simply drop your updated resume at <code className="text-amber-500">client/public/assets/Iman_Ayaz_Resume.pdf</code>
+          <div className="p-3 rounded-lg bg-canvas-card dark:bg-canvas-card light:bg-slate-100 border border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-200 text-[10px] font-mono text-slate-500 dark:text-slate-500 light:text-slate-600 text-center">
+            To update the downloadable PDF, place your updated resume at <code className="text-amber-500 font-semibold">client/public/assets/Iman_Ayaz_Resume.pdf</code>
           </div>
 
         </div>

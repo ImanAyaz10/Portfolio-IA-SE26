@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { projects, categories } from '../data/portfolioData';
-import { Search, Filter, ExternalLink, ArrowUpRight, CheckCircle2, Clock, Code2, Sparkles, BookOpen } from 'lucide-react';
+import { Search, ExternalLink, ArrowUpRight, CheckCircle2, BookOpen } from 'lucide-react';
 import { Github } from './BrandIcons';
 
 export default function BuildLog({ onSelectProject }) {
@@ -53,13 +53,13 @@ export default function BuildLog({ onSelectProject }) {
             </p>
           </div>
 
-          <div className="text-xs font-mono text-slate-500 dark:text-slate-500 light:text-slate-400">
+          <div className="text-xs font-mono text-slate-500 dark:text-slate-500 light:text-slate-600">
             TOTAL_ENTRIES: <span className="text-amber-500 font-bold">{projects.length}</span> | MATCHING: <span className="text-slate-200 dark:text-slate-200 light:text-slate-800 font-bold">{filteredProjects.length}</span>
           </div>
         </div>
 
         {/* Filter and Search Bar Controls */}
-        <div className="p-4 rounded-xl bg-canvas-card dark:bg-canvas-card light:bg-white border border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-200 mb-8 space-y-4 shadow-sm">
+        <div className="p-4 rounded-xl bg-canvas-card dark:bg-canvas-card light:bg-white border border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-300 mb-8 space-y-4 shadow-sm">
           <div className="flex flex-col lg:flex-row gap-4 items-stretch lg:items-center justify-between">
             
             {/* Search Input */}
@@ -70,12 +70,12 @@ export default function BuildLog({ onSelectProject }) {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search by technology (e.g. React, Groq, YOLO, scikit-learn) or project name..."
-                className="w-full pl-10 pr-4 py-2 rounded-lg bg-canvas-dark dark:bg-canvas-dark light:bg-slate-50 border border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-300 text-xs font-mono text-slate-200 dark:text-slate-200 light:text-slate-800 placeholder-slate-500 focus:outline-none focus:border-amber-500 transition-colors"
+                className="w-full pl-10 pr-4 py-2 rounded-lg bg-canvas-dark dark:bg-canvas-dark light:bg-slate-50 border border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-300 text-xs font-mono text-slate-200 dark:text-slate-200 light:text-slate-900 placeholder-slate-500 focus:outline-none focus:border-amber-500 transition-colors"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-mono text-slate-500 hover:text-slate-300"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-mono text-slate-500 hover:text-slate-300 dark:hover:text-slate-300 light:hover:text-slate-700"
                 >
                   CLEAR
                 </button>
@@ -83,14 +83,14 @@ export default function BuildLog({ onSelectProject }) {
             </div>
 
             {/* Quick Status Toggles */}
-            <div className="flex items-center gap-2">
-              <span className="text-xs font-mono text-slate-500 dark:text-slate-500 light:text-slate-400 hidden sm:inline">Status:</span>
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="text-xs font-mono text-slate-500 dark:text-slate-500 light:text-slate-600 hidden sm:inline">Status:</span>
               <button
                 onClick={() => setStatusFilter('all')}
                 className={`text-xs font-mono px-2.5 py-1.5 rounded-md transition-colors ${
                   statusFilter === 'all'
                     ? 'bg-amber-500 text-slate-950 font-bold'
-                    : 'bg-canvas-dark dark:bg-canvas-dark light:bg-slate-100 text-slate-400 hover:text-slate-200'
+                    : 'bg-canvas-dark dark:bg-canvas-dark light:bg-slate-100 text-slate-400 dark:text-slate-400 light:text-slate-700 hover:text-slate-200 dark:hover:text-slate-200 light:hover:text-slate-900 border border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-300'
                 }`}
               >
                 All
@@ -100,7 +100,7 @@ export default function BuildLog({ onSelectProject }) {
                 className={`text-xs font-mono px-2.5 py-1.5 rounded-md transition-colors ${
                   statusFilter === 'demo'
                     ? 'bg-amber-500 text-slate-950 font-bold'
-                    : 'bg-canvas-dark dark:bg-canvas-dark light:bg-slate-100 text-slate-400 hover:text-slate-200'
+                    : 'bg-canvas-dark dark:bg-canvas-dark light:bg-slate-100 text-slate-400 dark:text-slate-400 light:text-slate-700 hover:text-slate-200 dark:hover:text-slate-200 light:hover:text-slate-900 border border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-300'
                 }`}
               >
                 Live Demo Available
@@ -110,7 +110,7 @@ export default function BuildLog({ onSelectProject }) {
                 className={`text-xs font-mono px-2.5 py-1.5 rounded-md transition-colors ${
                   statusFilter === 'repo'
                     ? 'bg-amber-500 text-slate-950 font-bold'
-                    : 'bg-canvas-dark dark:bg-canvas-dark light:bg-slate-100 text-slate-400 hover:text-slate-200'
+                    : 'bg-canvas-dark dark:bg-canvas-dark light:bg-slate-100 text-slate-400 dark:text-slate-400 light:text-slate-700 hover:text-slate-200 dark:hover:text-slate-200 light:hover:text-slate-900 border border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-300'
                 }`}
               >
                 Verified Repo
@@ -119,15 +119,15 @@ export default function BuildLog({ onSelectProject }) {
           </div>
 
           {/* Category Tabs */}
-          <div className="flex flex-wrap gap-2 pt-2 border-t border-canvas-cardBorder/60 dark:border-canvas-cardBorder/60 light:border-slate-100">
+          <div className="flex flex-wrap gap-2 pt-2 border-t border-canvas-cardBorder/60 dark:border-canvas-cardBorder/60 light:border-slate-200">
             {categories.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id)}
                 className={`text-xs font-mono px-3 py-1.5 rounded-md transition-all ${
                   selectedCategory === cat.id
-                    ? 'bg-amber-500/15 dark:bg-amber-500/15 light:bg-amber-100 text-amber-500 dark:text-amber-400 light:text-amber-800 border border-amber-500/40 font-semibold'
-                    : 'text-slate-400 dark:text-slate-400 light:text-slate-600 hover:text-slate-200 dark:hover:text-slate-200 light:hover:text-slate-900 bg-canvas-dark/50 dark:bg-canvas-dark/50 light:bg-slate-50'
+                    ? 'bg-amber-500/15 dark:bg-amber-500/15 light:bg-amber-100 text-amber-500 dark:text-amber-400 light:text-amber-800 border border-amber-500/40 font-bold'
+                    : 'text-slate-400 dark:text-slate-400 light:text-slate-700 hover:text-slate-200 dark:hover:text-slate-200 light:hover:text-slate-900 bg-canvas-dark/50 dark:bg-canvas-dark/50 light:bg-slate-100 border border-transparent hover:border-canvas-cardBorder dark:hover:border-canvas-cardBorder light:hover:border-slate-300'
                 }`}
               >
                 {cat.label}
@@ -138,17 +138,17 @@ export default function BuildLog({ onSelectProject }) {
 
         {/* Project Case Studies Grid */}
         {filteredProjects.length === 0 ? (
-          <div className="p-12 text-center rounded-xl bg-canvas-card dark:bg-canvas-card light:bg-white border border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-200 space-y-3">
-            <Code2 className="w-8 h-8 text-slate-500 mx-auto" />
-            <h3 className="text-base font-mono text-slate-300 dark:text-slate-300 light:text-slate-700">No matching projects found</h3>
-            <p className="text-xs text-slate-500">Try adjusting your search query or switching categories.</p>
+          <div className="p-12 text-center rounded-2xl bg-canvas-card dark:bg-canvas-card light:bg-white border border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-300">
+            <p className="text-slate-400 dark:text-slate-400 light:text-slate-600 font-mono text-sm">
+              No matching build entries found for query: "{searchQuery}".
+            </p>
             <button
               onClick={() => {
-                setSearchQuery('');
                 setSelectedCategory('all');
+                setSearchQuery('');
                 setStatusFilter('all');
               }}
-              className="mt-2 text-xs font-mono text-amber-500 underline"
+              className="mt-3 text-xs font-mono text-amber-500 dark:text-amber-400 light:text-amber-700 underline font-semibold"
             >
               Reset all filters
             </button>
@@ -160,20 +160,20 @@ export default function BuildLog({ onSelectProject }) {
                 key={project.id}
                 className={`group flex flex-col justify-between rounded-xl bg-canvas-card dark:bg-canvas-card light:bg-white border transition-all duration-300 hover:shadow-lg ${
                   project.featured
-                    ? 'border-amber-500/40 dark:border-amber-500/40 light:border-amber-300/80 shadow-amber-glow/5'
-                    : 'border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-200 hover:border-slate-700'
+                    ? 'border-amber-500/50 dark:border-amber-500/50 light:border-amber-400 shadow-amber-glow/5'
+                    : 'border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-300 hover:border-slate-700 dark:hover:border-slate-600 light:hover:border-amber-500/50'
                 }`}
               >
                 {/* Card Top: Metadata & Badges */}
                 <div className="p-6">
                   <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-canvas-dark dark:bg-canvas-dark light:bg-slate-100 border border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-200 text-slate-400 dark:text-slate-400 light:text-slate-600 uppercase">
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-canvas-dark dark:bg-canvas-dark light:bg-slate-100 border border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-300 text-slate-400 dark:text-slate-400 light:text-slate-700 uppercase font-semibold">
                       {project.category}
                     </span>
 
                     <div className="flex items-center gap-1.5">
                       {project.statusBadge === 'completed' && (
-                        <span className="inline-flex items-center gap-1 text-[10px] font-mono text-emerald-500 dark:text-emerald-400">
+                        <span className="inline-flex items-center gap-1 text-[10px] font-mono text-emerald-500 dark:text-emerald-500 font-semibold">
                           <CheckCircle2 className="w-3 h-3" />
                           <span>{project.status}</span>
                         </span>
@@ -187,14 +187,14 @@ export default function BuildLog({ onSelectProject }) {
                   </h3>
 
                   {/* Tagline */}
-                  <p className="mt-2 text-xs font-mono text-slate-400 dark:text-slate-400 light:text-slate-500 leading-relaxed">
+                  <p className="mt-2 text-xs font-mono text-slate-400 dark:text-slate-400 light:text-slate-600 leading-relaxed">
                     {project.tagline}
                   </p>
 
                   {/* Problem -> Solution Pattern Summary */}
                   <div className="mt-4 p-3 rounded-lg bg-canvas-dark/70 dark:bg-canvas-dark/70 light:bg-slate-50 border border-canvas-cardBorder/50 dark:border-canvas-cardBorder/50 light:border-slate-200 space-y-2 text-xs">
                     <div>
-                      <span className="font-mono text-[10px] text-amber-500 dark:text-amber-400 light:text-amber-600 font-bold tracking-wider uppercase block">
+                      <span className="font-mono text-[10px] text-amber-500 dark:text-amber-400 light:text-amber-700 font-bold tracking-wider uppercase block">
                         Problem
                       </span>
                       <p className="text-slate-300 dark:text-slate-300 light:text-slate-700 text-[11px] leading-relaxed line-clamp-2">
@@ -203,7 +203,7 @@ export default function BuildLog({ onSelectProject }) {
                     </div>
 
                     <div>
-                      <span className="font-mono text-[10px] text-emerald-500 dark:text-emerald-400 font-bold tracking-wider uppercase block">
+                      <span className="font-mono text-[10px] text-emerald-500 dark:text-emerald-500 light:text-emerald-700 font-bold tracking-wider uppercase block">
                         Solution & Contribution
                       </span>
                       <p className="text-slate-300 dark:text-slate-300 light:text-slate-700 text-[11px] leading-relaxed line-clamp-2">
@@ -217,13 +217,13 @@ export default function BuildLog({ onSelectProject }) {
                     {project.techStack.slice(0, 5).map((tech) => (
                       <span
                         key={tech}
-                        className="text-[10px] font-mono px-2 py-0.5 rounded bg-canvas-dark dark:bg-canvas-dark light:bg-slate-100 border border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-200 text-slate-300 dark:text-slate-300 light:text-slate-700"
+                        className="text-[10px] font-mono px-2 py-0.5 rounded bg-canvas-dark dark:bg-canvas-dark light:bg-slate-100 border border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-300 text-slate-300 dark:text-slate-300 light:text-slate-800"
                       >
                         {tech}
                       </span>
                     ))}
                     {project.techStack.length > 5 && (
-                      <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-canvas-dark dark:bg-canvas-dark light:bg-slate-100 text-slate-500">
+                      <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-canvas-dark dark:bg-canvas-dark light:bg-slate-100 text-slate-500 dark:text-slate-500 light:text-slate-600">
                         +{project.techStack.length - 5}
                       </span>
                     )}
@@ -231,11 +231,11 @@ export default function BuildLog({ onSelectProject }) {
                 </div>
 
                 {/* Card Footer: Action Links */}
-                <div className="px-6 py-4 border-t border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-100 flex flex-wrap items-center justify-between gap-3 bg-canvas-dark/30 dark:bg-canvas-dark/30 light:bg-slate-50/50 rounded-b-xl text-xs font-mono">
+                <div className="px-6 py-4 border-t border-canvas-cardBorder dark:border-canvas-cardBorder light:border-slate-200 flex flex-wrap items-center justify-between gap-3 bg-canvas-dark/30 dark:bg-canvas-dark/30 light:bg-slate-50/70 rounded-b-xl text-xs font-mono">
                   {/* Case Study Deep Dive Modal Trigger */}
                   <button
                     onClick={() => onSelectProject(project)}
-                    className="inline-flex items-center gap-1.5 text-amber-500 hover:text-amber-400 font-semibold transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-amber-500"
+                    className="inline-flex items-center gap-1.5 text-amber-500 dark:text-amber-400 light:text-amber-700 hover:text-amber-400 dark:hover:text-amber-300 light:hover:text-amber-800 font-bold transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-amber-500"
                   >
                     <BookOpen className="w-3.5 h-3.5" />
                     <span>Case Study Log</span>
@@ -249,12 +249,12 @@ export default function BuildLog({ onSelectProject }) {
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-slate-300 dark:text-slate-300 light:text-slate-700 hover:text-amber-500 transition-colors"
+                        className="inline-flex items-center gap-1.5 text-slate-300 dark:text-slate-300 light:text-slate-700 hover:text-amber-500 dark:hover:text-amber-400 light:hover:text-amber-700 font-semibold transition-colors"
                         title={`View Source Code for ${project.title} on GitHub`}
                         aria-label={`View Source Code for ${project.title} on GitHub`}
                       >
                         <Github className="w-3.5 h-3.5 text-amber-500" />
-                        <span>View Source Code</span>
+                        <span>Source Code</span>
                       </a>
                     )}
 
@@ -264,7 +264,7 @@ export default function BuildLog({ onSelectProject }) {
                         href={project.demo}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-emerald-500 hover:text-emerald-400 transition-colors inline-flex items-center gap-1 font-semibold"
+                        className="text-emerald-500 dark:text-emerald-500 light:text-emerald-700 hover:text-emerald-400 transition-colors inline-flex items-center gap-1 font-bold"
                         title={`Open Live Demo for ${project.title}`}
                         aria-label={`Open Live Demo for ${project.title}`}
                       >

@@ -16,9 +16,9 @@
     --bg-primary: #f8f9fa;
     --bg-secondary: #ffffff;
     --text-primary: #0f172a;
-    --text-muted: #64748b;
-    --border-subtle: #e2e8f0;
-    --accent-amber: #d97706;
+    --text-muted: #475569;
+    --border-subtle: #cbd5e1;
+    --accent-amber: #b45309;
   }
 
   body {
@@ -36,25 +36,25 @@
 .bg-tech-grid {
   background-size: 32px 32px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
 }
 
 .light .bg-tech-grid {
   background-size: 32px 32px;
   background-image: 
-    linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+    linear-gradient(to right, rgba(15, 23, 42, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.06) 1px, transparent 1px);
 }
 
 /* Subtle Technical Dotted Pattern */
 .bg-tech-dots {
-  background-image: radial-gradient(rgba(229, 169, 60, 0.12) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(229, 169, 60, 0.15) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
 .light .bg-tech-dots {
-  background-image: radial-gradient(rgba(217, 119, 6, 0.12) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(180, 83, 9, 0.2) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
@@ -83,6 +83,10 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: #e5a93c;
+}
+
+.light ::-webkit-scrollbar-thumb:hover {
+  background: #b45309;
 }
 
 /* Respect user's motion preferences */

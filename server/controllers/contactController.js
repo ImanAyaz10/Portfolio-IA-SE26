@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { Resend } from 'resend';
 import { ContactMessage } from '../models/ContactMessage.js';
 import { isDbConnected } from '../config/db.js';
 
@@ -9,7 +10,9 @@ const __dirname = path.dirname(__filename);
 const DATA_DIR = path.join(__dirname, '..', 'data');
 const LOCAL_STORAGE_FILE = path.join(DATA_DIR, 'messages.json');
 
-// Simple sanitizer to remove script tags and dangerously nested HTML
+const RECIPIENT_EMAIL = 'imanayaz2003@gmail.com';
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 function sanitizeInput(str) {
   if (typeof str !== 'string') return '';
   return str
@@ -18,15 +21,12 @@ function sanitizeInput(str) {
     .trim();
 }
 
-// Basic email regex
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
 /**
  * Handle new contact form submissions
  */
 export async function submitContactMessage(req, res) {
   try {
-    const { name, email, subject, message, roleOrCompany, botField } = req.body;
+    const { name, email, subject, message, roleOrCompany, botField } = req.body || {};
 
     // 1. Honeypot check: If hidden field is populated, silently drop spam
     if (botField && botField.trim().length > 0) {
@@ -65,56 +65,111 @@ export async function submitContactMessage(req, res) {
       email: email.trim().toLowerCase().slice(0, 120),
       subject: sanitizeInput(subject || 'General Inquiry').slice(0, 150),
       message: sanitizeInput(message).slice(0, 3000),
-      roleOrCompany: sanitizeInput(roleOrCompany || '').slice(0, 120),
+      roleOrCompany: sanitizeInput(roleOrCompany || 'Not Specified').slice(0, 120),
       ipAddress: req.ip || req.headers['x-forwarded-for'] || '',
       createdAt: new Date().toISOString(),
     };
 
-    // 4. Dual-mode persistence
-    if (isDbConnected()) {
-      const savedDoc = await ContactMessage.create(cleanData);
-      return res.status(201).json({
-        success: true,
-        message: 'Thank you! Your message was saved securely to MongoDB Atlas.',
-        id: savedDoc._id,
-        mode: 'mongodb',
-      });
-    } else {
-      // Local file fallback
-      if (!fs.existsSync(DATA_DIR)) {
-        fs.mkdirSync(DATA_DIR, { recursive: true });
-      }
-
-      let existing = [];
-      if (fs.existsSync(LOCAL_STORAGE_FILE)) {
-        try {
-          const raw = fs.readFileSync(LOCAL_STORAGE_FILE, 'utf-8');
-          existing = JSON.parse(raw);
-        } catch {
-          existing = [];
+    // 4. Persistence backup (local JSON or MongoDB)
+    let savedId = null;
+    try {
+      if (isDbConnected()) {
+        const savedDoc = await ContactMessage.create(cleanData);
+        savedId = savedDoc._id;
+      } else {
+        if (!fs.existsSync(DATA_DIR)) {
+          fs.mkdirSync(DATA_DIR, { recursive: true });
         }
+        let existing = [];
+        if (fs.existsSync(LOCAL_STORAGE_FILE)) {
+          try {
+            existing = JSON.parse(fs.readFileSync(LOCAL_STORAGE_FILE, 'utf-8'));
+          } catch {
+            existing = [];
+          }
+        }
+        savedId = 'msg_' + Date.now();
+        existing.push({ id: savedId, ...cleanData });
+        fs.writeFileSync(LOCAL_STORAGE_FILE, JSON.stringify(existing, null, 2), 'utf-8');
       }
+    } catch (dbErr) {
+      console.warn('[STORAGE] Non-fatal backup persistence warning:', dbErr.message);
+    }
 
-      const entry = {
-        id: 'msg_' + Date.now(),
-        ...cleanData,
-      };
+    // 5. Real Email Delivery via Resend
+    const resendApiKey = process.env.RESEND_API_KEY;
 
-      existing.push(entry);
-      fs.writeFileSync(LOCAL_STORAGE_FILE, JSON.stringify(existing, null, 2), 'utf-8');
-
-      return res.status(201).json({
-        success: true,
-        message: 'Thank you! Your message was stored safely in the local system log.',
-        id: entry.id,
-        mode: 'local_file',
+    if (!resendApiKey) {
+      console.warn('[EMAIL] RESEND_API_KEY not configured. Message was saved to backup only.');
+      return res.status(503).json({
+        success: false,
+        configured: false,
+        error: 'Email delivery provider is awaiting API key configuration (RESEND_API_KEY). Message was saved to local backup. Please email directly to imanayaz2003@gmail.com.',
+        backupId: savedId,
       });
     }
-  } catch (err) {
-    console.error('[ERROR] submitContactMessage failed:', err);
+
+    const resend = new Resend(resendApiKey);
+    const sender = process.env.RESEND_FROM_EMAIL || 'Portfolio Contact <onboarding@resend.dev>';
+
+    const emailResult = await resend.emails.send({
+      from: sender,
+      to: [RECIPIENT_EMAIL],
+      reply_to: cleanData.email,
+      subject: `[Portfolio Inquiry] ${cleanData.subject} — from ${cleanData.name}`,
+      text: `New Portfolio Contact Submission:
+Name: ${cleanData.name}
+Email: ${cleanData.email}
+Company / Role: ${cleanData.roleOrCompany}
+Subject: ${cleanData.subject}
+Date: ${cleanData.createdAt}
+
+Message:
+${cleanData.message}
+`,
+      html: `
+        <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; border: 1px solid #e2e8f0; border-radius: 12px; background-color: #ffffff;">
+          <div style="border-bottom: 2px solid #e5a93c; padding-bottom: 12px; margin-bottom: 20px;">
+            <h2 style="margin: 0; color: #0f172a;">New Portfolio Contact Message</h2>
+            <span style="font-size: 12px; color: #64748b; font-family: monospace;">IMAN // BUILD LOG</span>
+          </div>
+          <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 14px;">
+            <tr><td style="padding: 6px 0; color: #64748b;"><strong>From:</strong></td><td style="padding: 6px 0; color: #0f172a;">${cleanData.name}</td></tr>
+            <tr><td style="padding: 6px 0; color: #64748b;"><strong>Email:</strong></td><td style="padding: 6px 0; color: #0f172a;"><a href="mailto:${cleanData.email}">${cleanData.email}</a></td></tr>
+            <tr><td style="padding: 6px 0; color: #64748b;"><strong>Company / Role:</strong></td><td style="padding: 6px 0; color: #0f172a;">${cleanData.roleOrCompany}</td></tr>
+            <tr><td style="padding: 6px 0; color: #64748b;"><strong>Subject:</strong></td><td style="padding: 6px 0; color: #0f172a;">${cleanData.subject}</td></tr>
+          </table>
+          <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; margin-bottom: 20px;">
+            <h4 style="margin: 0 0 8px 0; font-size: 12px; color: #475569; text-transform: uppercase;">Message Content:</h4>
+            <p style="margin: 0; color: #1e293b; line-height: 1.6; white-space: pre-wrap;">${cleanData.message}</p>
+          </div>
+          <div style="font-size: 12px; color: #94a3b8; border-top: 1px solid #e2e8f0; padding-top: 12px; text-align: center;">
+            Reply directly to this email to contact ${cleanData.name} (${cleanData.email}).
+          </div>
+        </div>
+      `,
+    });
+
+    if (emailResult.error) {
+      console.error('[RESEND ERROR]', emailResult.error);
+      return res.status(400).json({
+        success: false,
+        error: emailResult.error.message || 'Email provider rejected delivery.',
+        backupId: savedId,
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: 'Thank you! Your message was accepted by the email provider for delivery to Iman Ayaz.',
+      id: emailResult.data?.id,
+      provider: 'resend',
+    });
+  } catch (error) {
+    console.error('[CONTACT CONTROLLER ERROR]', error);
     return res.status(500).json({
       success: false,
-      error: 'An internal error occurred while processing your message. Please try again later or reach out via LinkedIn.',
+      error: 'An internal error occurred while processing the contact message.',
     });
   }
 }

@@ -4,6 +4,7 @@
   "description": "IMAN // BUILD LOG — Personal engineering portfolio & interactive case study system for Iman Ayaz",
   "author": "Iman Ayaz <imanayaz2003@gmail.com>",
   "license": "MIT",
+  "type": "module",
   "private": true,
   "scripts": {
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
@@ -17,5 +18,8 @@
   },
   "devDependencies": {
     "concurrently": "^9.1.2"
+  },
+  "dependencies": {
+    "resend": "^6.34.1"
   }
 }

@@ -4,15 +4,17 @@ const ThemeContext = createContext();
 
 export function ThemeProvider({ children }) {
   const [theme, setTheme] = useState(() => {
-    // Check localStorage first
     if (typeof window !== 'undefined') {
       const savedTheme = localStorage.getItem('iman_buildlog_theme');
-      if (savedTheme) {
+      if (savedTheme === 'light' || savedTheme === 'dark') {
         return savedTheme;
       }
-      // Check system preference
+      // Respect system theme preference on first visit
       if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
         return 'light';
+      }
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        return 'dark';
       }
     }
     return 'dark';
@@ -27,7 +29,11 @@ export function ThemeProvider({ children }) {
       root.classList.remove('dark');
       root.classList.add('light');
     }
-    localStorage.setItem('iman_buildlog_theme', theme);
+    try {
+      localStorage.setItem('iman_buildlog_theme', theme);
+    } catch (e) {
+      console.warn('Unable to persist theme to localStorage', e);
+    }
   }, [theme]);
 
   const toggleTheme = () => {

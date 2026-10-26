@@ -1,3 +1,5 @@
+process.env.NODE_ENV = 'test';
+
 import http from 'http';
 import app from '../server.js';
 
@@ -55,7 +57,7 @@ async function runTests() {
     const botData = await botRes.json();
     await assert('POST /api/contact catches honeypot field', botRes.status === 200 && botData.success === true);
 
-    // 4. Test Valid Contact Submission
+    // 4. Test Valid Contact Submission without API key (honest error & backup preservation)
     const validRes = await fetch(`${baseUrl}/api/contact`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -68,8 +70,8 @@ async function runTests() {
       }),
     });
     const validData = await validRes.json();
-    await assert('POST /api/contact succeeds with 201', validRes.status === 201);
-    await assert('Submission returns success true and message ID', validData.success === true && (validData.id || validData.messageId));
+    await assert('POST /api/contact without key returns 503 (waiting for RESEND_API_KEY)', validRes.status === 503);
+    await assert('POST /api/contact preserves submission in local backup', validData.backupId && validData.backupId.startsWith('msg_'));
 
     console.log(`\n🏁 Test Results: ${passed} passed, ${failed} failed.`);
   } catch (err) {

@@ -1,3 +1,5 @@
+import plugin from 'tailwindcss/plugin';
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -10,7 +12,7 @@ export default {
       colors: {
         // Engineering journal palette
         canvas: {
-          dark: '#f2f2f2',
+          dark: '#0c0d10',
           darker: '#08080a',
           card: '#131418',
           cardBorder: '#22252d',
@@ -22,6 +24,7 @@ export default {
           400: '#fbbf24',
           500: '#f59e0b',
           600: '#d97706',
+          700: '#b45309',
           accent: '#e5a93c',
         },
         graphite: {
@@ -62,5 +65,9 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function({ addVariant }) {
+      addVariant('light', ['.light &', '.light&']);
+    }),
+  ],
 };
