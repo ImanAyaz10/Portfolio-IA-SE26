@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --bg-primary: #0c0d10;
+    --bg-primary: #000000;
     --bg-secondary: #131418;
     --text-primary: #f4f4f5;
     --text-muted: #94a3b8;
@@ -13,12 +13,12 @@
   }
 
   .light {
-    --bg-primary: #f8f9fa;
-    --bg-secondary: #ffffff;
-    --text-primary: #0f172a;
-    --text-muted: #475569;
-    --border-subtle: #cbd5e1;
-    --accent-amber: #b45309;
+    --bg-primary: #000000;
+    --bg-secondary: #000000;
+    --text-primary: #f4f4f5;
+    --text-muted: #94a3b8;
+    --border-subtle: #22252d;
+    --accent-amber: #e5a93c;
   }
 
   body {
